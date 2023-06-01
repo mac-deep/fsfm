@@ -1,9 +1,10 @@
 import React from "react";
 
-const ForSlider = ({ parameter, setParameter, title, min, max }) => {
+const ForSlider = ({ parameter, setParameter, title, min, max, desc }) => {
   return (
-    <div className="p-4 w-full">
-      <h1 className="font-bold rampart-one uppercase text-4xl mb-4">{title}</h1>
+    <div className="p-4 w-full shadow-lg bg-white rounded-lg">
+      <h1 className="text-xl md:text-4xl mb-2">{title}</h1>
+      <p className="text-xs md:text-base mb-1">{desc}</p>
       <div className="flex justify-between items-center">
         <input
           className="w-full mr-4"

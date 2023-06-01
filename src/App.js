@@ -27,8 +27,10 @@ const App = () => {
   };
 
   useEffect(() => {
-    setSeconds((4 * bars) / (tempo / 60));
-    fiboSeries(setFiboSeconds, seconds);
+    if(tempo >= 1){
+      setSeconds((4 * bars) / (tempo / 60));
+      fiboSeries(setFiboSeconds, seconds);
+    }
   }, [tempo, bars, seconds]);
 
   useEffect(() => {
@@ -41,17 +43,26 @@ const App = () => {
   }, [bars]);
 
   return (
-    <div className="w-full bg-gradient-to-b lg:p-20 lg:pt-12 px-4 pt-4 from-blue-200 to-blue-400 min-h-screen">
-      <h1 className="text-6xl great-vibes font-bold pb-12 capitalize text-center text-purple-900">
-        fibonacci sequence for music 🎶✨
+    <main className="bg-gradient-to-b from-gray-50 to-gray-200">
+    <div className="max-w-screen-lg mx-auto w-full lg:p-20 lg:pt-12 px-6 pt-8 min-h-screen">
+      <div className="text-lg md:text-4xl font-bold pb-12 text-black ">
+        <h1 className="md:mb-4">Fibonacci sequence for music</h1>
+      <h2 className="font-light">
+        Make transitions of music piece, 🎶 <br/> On the magical beats. ✨
+      </h2>
+      </div>
+      <h1>
+        
       </h1>
-      <div className="flex flex-col md:flex-row">
+      <p className="text-3xl font-bold text-center"></p>
+      <div className="flex flex-col md:flex-row gap-4">
         <ForSlider
           parameter={tempo}
           setParameter={setTempo}
           min="1"
           max="200"
           title="💿Tempo"
+          desc="What is the tempo of your track?"
         />
         <ForSlider
           parameter={bars}
@@ -59,18 +70,20 @@ const App = () => {
           min="1"
           max="400"
           title="🎼Bars"
+          desc="What is the length of your track in bars?"
         />
       </div>
-      <div className="mt-16">
+      <div className="mt-16 flex flex-col gap-4">
+        <ForVariable title="bars" variable={bars} fiboVariable={fiboBars} />
+        <ForVariable title="beats" variable={beats} fiboVariable={fiboBeats} />
         <ForVariable
           title="seconds"
           variable={seconds}
           fiboVariable={fiboSeconds}
         />
-        <ForVariable title="beats" variable={beats} fiboVariable={fiboBeats} />
-        <ForVariable title="bars" variable={bars} fiboVariable={fiboBars} />
       </div>
     </div>
+    </main>
   );
 };
 
